@@ -42,13 +42,13 @@ public class DAO {
         listaPizzas.add(new Pizza("Del Bosco",4,new TipoIngrediente[]{TipoIngrediente.MOZZARELLA,TipoIngrediente.CALABAZA,TipoIngrediente.TRUFA,TipoIngrediente.NATA},TipoTamano.FAMILIAR,18.90));
         listaPizzas.add(new Pizza("Capricciosa",7,new TipoIngrediente[]{TipoIngrediente.MOZZARELLA,TipoIngrediente.TOMATE_FRITO,TipoIngrediente.ALCACHOFAS,TipoIngrediente.ACEITUNAS,TipoIngrediente.JAMON,TipoIngrediente.CHAMPIÑON,TipoIngrediente.ANCHOAS},TipoTamano.FAMILIAR,13.90));
         listaPizzas.add(new Pizza("Calzone",4,new TipoIngrediente[]{TipoIngrediente.TOMATE_FRITO,TipoIngrediente.MOZZARELLA,TipoIngrediente.SALSA_PICANTE,TipoIngrediente.JAMON},TipoTamano.MEDIANA,15.90));
-        listaPizzas.add(new Pizza("QUATTRO FORMAGGI",4,new TipoIngrediente[]{TipoIngrediente.MOZZARELLA,TipoIngrediente.TOMATE_FRITO,TipoIngrediente.ALBAHACA,TipoIngrediente.ACEITE_OLIVA},TipoTamano.FAMILIAR,13.50));
-        listaPizzas.add(new Pizza("Margherita",4,new TipoIngrediente[]{TipoIngrediente.MOZZARELLA,TipoIngrediente.TOMATE_FRITO,TipoIngrediente.ALBAHACA,TipoIngrediente.ACEITE_OLIVA},TipoTamano.FAMILIAR,13.50));
-        listaPizzas.add(new Pizza("Margherita",4,new TipoIngrediente[]{TipoIngrediente.MOZZARELLA,TipoIngrediente.TOMATE_FRITO,TipoIngrediente.ALBAHACA,TipoIngrediente.ACEITE_OLIVA},TipoTamano.FAMILIAR,13.50));
-        listaPizzas.add(new Pizza("Margherita",4,new TipoIngrediente[]{TipoIngrediente.MOZZARELLA,TipoIngrediente.TOMATE_FRITO,TipoIngrediente.ALBAHACA,TipoIngrediente.ACEITE_OLIVA},TipoTamano.FAMILIAR,13.50));
-        listaPizzas.add(new Pizza("Margherita",4,new TipoIngrediente[]{TipoIngrediente.MOZZARELLA,TipoIngrediente.TOMATE_FRITO,TipoIngrediente.ALBAHACA,TipoIngrediente.ACEITE_OLIVA},TipoTamano.FAMILIAR,13.50));
-    }
+        listaPizzas.add(new Pizza("QUATTRO FORMAGGI",4,new TipoIngrediente[]{TipoIngrediente.MOZZARELLA,TipoIngrediente.PROVOLA,TipoIngrediente.PARMESANO,TipoIngrediente.GORGONZOLA},TipoTamano.MEDIANA,13.90));
+        listaPizzas.add(new Pizza("Bufalina",4,new TipoIngrediente[]{TipoIngrediente.MOZZARELLA,TipoIngrediente.TOMATE_FRITO,TipoIngrediente.ALBAHACA,TipoIngrediente.JAMON_YORK},TipoTamano.FAMILIAR,14.50));
+        listaPizzas.add(new Pizza("Melanzine",4,new TipoIngrediente[]{TipoIngrediente.MOZZARELLA,TipoIngrediente.TOMATE_FRITO,TipoIngrediente.BEICON,TipoIngrediente.PARMESANO},TipoTamano.FAMILIAR,13.90));
+        listaPizzas.add(new Pizza("Culatello",4,new TipoIngrediente[]{TipoIngrediente.MOZZARELLA,TipoIngrediente.TOMATE_FRITO,TipoIngrediente.QUESO_RULO_DE_CABRA,TipoIngrediente.JAMON_YORK},TipoTamano.FAMILIAR,15.90));
 
+        return listaPizzas;
+    }
 
 
 }
