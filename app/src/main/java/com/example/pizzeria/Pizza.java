@@ -6,14 +6,16 @@ import java.util.Objects;
 public class Pizza {
 
     private int idPizza = 0;
+    private String nombre;
     private int numeroIngredientes;
     private TipoIngrediente[] ingredientes;
     private TipoTamano tamano;
     private double precio;
 
 
-    public Pizza(int idPizza, int numeroIngredientes, TipoIngrediente[] ingredientes, TipoTamano tamano, double precio) {
-        this.idPizza = idPizza;
+    public Pizza(String nombre, int numeroIngredientes, TipoIngrediente[] ingredientes, TipoTamano tamano, double precio) {
+        this.idPizza++;
+        this.nombre = nombre;
         this.numeroIngredientes = numeroIngredientes;
         this.ingredientes = ingredientes;
         this.tamano = tamano;
@@ -26,6 +28,14 @@ public class Pizza {
 
     public void setIdPizza(int idPizza) {
         this.idPizza = idPizza;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getNumeroIngredientes() {
@@ -64,6 +74,7 @@ public class Pizza {
     public String toString() {
         return "Pizza{" +
                 "idPizza=" + idPizza +
+                ", nombre='" + nombre + '\'' +
                 ", numeroIngredientes=" + numeroIngredientes +
                 ", ingredientes=" + Arrays.toString(ingredientes) +
                 ", tamano=" + tamano +
