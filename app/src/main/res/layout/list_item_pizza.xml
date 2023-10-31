@@ -19,7 +19,7 @@
             android:layout_width="236dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@drawable/Pizza_Hawaii_02" />
+            app:srcCompat="@drawable/pizza_hawaii_02" />
 
         <LinearLayout
             android:layout_width="408dp"
