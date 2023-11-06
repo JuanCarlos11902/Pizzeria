@@ -1,9 +1,10 @@
 package com.example.pizzeria;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class Pizza {
+public class Pizza implements Serializable {
 
     private int idPizza = 0;
     private String nombre;

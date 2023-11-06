@@ -3,6 +3,7 @@ package com.example.pizzeria;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,9 +14,11 @@ import java.util.ArrayList;
 public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.PizzaViewHolder> {
 
     private ArrayList<Pizza> pizzaList;
+    private OnPizzaItemClickListener listener;
 
-    public PizzaAdapter(ArrayList<Pizza> pizzaList){
+    public PizzaAdapter(ArrayList<Pizza> pizzaList, OnPizzaItemClickListener listener){
         this.pizzaList = pizzaList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -28,12 +31,31 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.PizzaViewHol
     @Override
     public void onBindViewHolder(@NonNull PizzaAdapter.PizzaViewHolder holder, int position) {
         Pizza pizza = pizzaList.get(position);
-        holder.bind(pizza);
+        holder.txtNombre.setText(pizza.getNombre());
+        holder.txtNumeroIngredientes.setText(pizza.getNumeroIngredientes() + "");
+        holder.txtIngredientes.setText(pizza.getIngredientes().toString());
+        holder.txtTamaño.setText(pizza.getTamano().toString());
+        holder.txtPrecio.setText(pizza.getPrecio() + "");
+
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                if (listener != null){
+                    listener.onPizzaItemClick(pizza);
+                }
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
        return pizzaList.size();
+    }
+
+    public interface OnPizzaItemClickListener{
+        void onPizzaItemClick(Pizza pizza);
     }
 
     public class PizzaViewHolder extends RecyclerView.ViewHolder {
@@ -52,12 +74,6 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.PizzaViewHol
             txtIngredientes = itemView.findViewById(R.id.txtIngredientes);
             txtTamaño = itemView.findViewById(R.id.txtTamaño);
             txtPrecio = itemView.findViewById(R.id.txtPrecio);
-        }
-
-        public void bind(Pizza pizza) {
-            txtNombre.setText(pizza.getNombre());
-            txtNumeroIngredientes.setText(pizza.getNumeroIngredientes());
-            txtIngredientes.setText(convertirArray(pizza));
         }
 
         public String convertirArray(Pizza pizza) {
