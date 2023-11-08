@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 
 public class ActivityCarta extends AppCompatActivity implements PizzaAdapter.OnPizzaItemClickListener{
@@ -19,11 +20,6 @@ public class ActivityCarta extends AppCompatActivity implements PizzaAdapter.OnP
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carta);
 
-        recyclerView = findViewById(R.id.recyclerView);
-        servicio = new Servicio();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        pizzaAdapter = new PizzaAdapter(servicio.getListaPizzasFabricadas(),this);
-        recyclerView.setAdapter(pizzaAdapter);
     }
 
     @Override
@@ -32,5 +28,13 @@ public class ActivityCarta extends AppCompatActivity implements PizzaAdapter.OnP
         intent.putExtra("pizza", pizza);
         startActivity(intent);
 
+    }
+
+    public void mostrarRecyclerView(View view){
+        recyclerView = findViewById(R.id.recyclerView);
+        servicio = new Servicio();
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        pizzaAdapter = new PizzaAdapter(servicio.getListaPizzasFabricadas(),this);
+        recyclerView.setAdapter(pizzaAdapter);
     }
 }
