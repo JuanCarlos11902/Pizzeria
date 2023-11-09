@@ -53,6 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:backgroundTint="#000000"
+                    android:onClick="cambiarVistaPersonalizar"
                     android:text="Personalizar Pizza"
                     android:textSize="14sp" />
 
@@ -81,24 +82,29 @@
             tools:context=".ActivityCarta">
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="410dp"
-                android:layout_height="651dp"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="1dp">
+            <ViewSwitcher
+                android:id="@+id/viewSwitcher"
+                android:layout_width="412dp"
+                android:layout_height="645dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="6dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
-                    android:layout_width="411dp"
-                    android:layout_height="610dp"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginBottom="1dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_width="match_parent"
+                    android:layout_height="665dp" />
+
+                <android.widget.TextView
+                    android:id="@+id/textViewCambiado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </ViewSwitcher>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
