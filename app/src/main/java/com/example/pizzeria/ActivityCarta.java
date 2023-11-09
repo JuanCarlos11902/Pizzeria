@@ -1,6 +1,7 @@
 package com.example.pizzeria;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,22 +22,14 @@ public class ActivityCarta extends AppCompatActivity implements PizzaAdapter.OnP
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carta);
-        ViewSwitcher viewSwitcher = (ViewSwitcher) findViewById(R.id.viewSwitcher);
-        View myFirstView = findViewById(R.id.recyclerView);
-        View mySecondView = findViewById(R.id.textViewCambiado);
-        Button button1 = (Button) findViewById(R.id.button6);
-        button1.setOnClickListener(new View.OnClickListener() {
 
+        Button button6 = findViewById(R.id.button6);
+
+        button6.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if (viewSwitcher.getCurrentView() != myFirstView) {
-                    viewSwitcher.showPrevious();
-                } else if (viewSwitcher.getCurrentView() != mySecondView) {
-                    viewSwitcher.showNext();
-                }
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.contenedor, new RecyclerFragment()).commit();
             }
-
-
         });
 
     }

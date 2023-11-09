@@ -82,12 +82,10 @@
             tools:context=".ActivityCarta">
 
 
-            <ViewSwitcher
-                android:id="@+id/viewSwitcher"
-                android:layout_width="412dp"
-                android:layout_height="645dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="6dp"
+            <FrameLayout
+                android:id="@+id/contenedor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -96,14 +94,9 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="665dp" />
-
-                <android.widget.TextView
-                    android:id="@+id/textViewCambiado"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-            </ViewSwitcher>
+                    android:layout_height="665dp"
+                    android:layout_marginTop="24dp" />
+            </FrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
