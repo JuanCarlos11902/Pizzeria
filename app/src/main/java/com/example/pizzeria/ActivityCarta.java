@@ -25,10 +25,14 @@ public class ActivityCarta extends AppCompatActivity implements PizzaAdapter.OnP
 
         Button button6 = findViewById(R.id.button6);
 
-        button6.setOnClickListener(new View.OnClickListener() {
+        button6.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.contenedor, new RecyclerFragment()).commit();
+                if (getSupportFragmentManager().findFragmentById(R.id.contenedor) != null){
+                    getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentById(R.id.contenedor)).commit();
+                }
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.contenedor,new PersonalizarFragment()).commit();
             }
         });
 
@@ -43,12 +47,15 @@ public class ActivityCarta extends AppCompatActivity implements PizzaAdapter.OnP
     }
 
     public void mostrarRecyclerView(View view){
-        recyclerView = findViewById(R.id.recyclerView);
-        servicio = new Servicio();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        pizzaAdapter = new PizzaAdapter(servicio.getListaPizzasFabricadas(),this);
-        recyclerView.setAdapter(pizzaAdapter);
+
+        if (getSupportFragmentManager().findFragmentById(R.id.contenedor) != null){
+            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentById(R.id.contenedor)).commit();
+        }
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.contenedor, new RecyclerFragment()).commit();
+
     }
+
 
 
 }
