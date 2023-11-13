@@ -39,17 +39,52 @@ public class IngredientesFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_ingredientes, container, false);
         listaIngredientes = new ArrayList<>();
-
+        ArrayList<CheckBox> listaCheckBox = new ArrayList<>();
         tableLayout = view.findViewById(R.id.table);
+        CheckBox checkbox = view.findViewById(R.id.checkBox30);
+        CheckBox checkbox2 = view.findViewById(R.id.checkBox31);
+        CheckBox checkbox3 = view.findViewById(R.id.checkBox32);
+        CheckBox checkbox4 = view.findViewById(R.id.checkBox33);
+        CheckBox checkbox5 = view.findViewById(R.id.checkBox34);
+        CheckBox checkbox6 = view.findViewById(R.id.checkBox35);
+        CheckBox checkbox7 = view.findViewById(R.id.checkBox36);
+        CheckBox checkbox8 = view.findViewById(R.id.checkBox37);
+        CheckBox checkbox9 = view.findViewById(R.id.checkBox18);
+        CheckBox checkbox10 = view.findViewById(R.id.checkBox19);
+        CheckBox checkbox11 = view.findViewById(R.id.checkBox20);
+        CheckBox checkbox12 = view.findViewById(R.id.checkBox21);
+        CheckBox checkbox13 = view.findViewById(R.id.checkBox22);
+        CheckBox checkbox14 = view.findViewById(R.id.checkBox23);
+        CheckBox checkbox15 = view.findViewById(R.id.checkBox24);
+        CheckBox checkbox16 = view.findViewById(R.id.checkBox25);
+        CheckBox checkbox17 = view.findViewById(R.id.checkBox26);
+        CheckBox checkbox18 = view.findViewById(R.id.checkBox27);
+        CheckBox checkbox19 = view.findViewById(R.id.checkBox28);
+        CheckBox checkbox20 = view.findViewById(R.id.checkBox29);
+
+        for (int i = 0; i < tableLayout.getChildCount(); i++) {
+            TableRow row = (TableRow) tableLayout.getChildAt(i);
+            for (int j = 0; j < row.getChildCount(); j++) {
+                if (row.getChildAt(j) instanceof CheckBox){
+                    CheckBox checkboxAnadir = (CheckBox) row.getChildAt(j);
+                    listaCheckBox.add(checkboxAnadir);
+                }
+            }
+        }
+
+        for (CheckBox checkboxUsado: listaCheckBox) {
+            checkboxUsado.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    desactivarBotones(view);
+                }
+            });
+        }
 
         return view;
     }
 
-    public void checkboxClickado(View view){
-        desactivarBotones();
-    }
-
-    public void desactivarBotones(){
+    public void desactivarBotones(View view) {
         int numRows = tableLayout.getChildCount();
         listaIngredientes.clear();
         for (int i = 0; i < numRows; i++) {
@@ -62,16 +97,14 @@ public class IngredientesFragment extends Fragment {
 
                 if (cell instanceof CheckBox) {
                     CheckBox checkbox = (CheckBox) cell;
-                    if (listaIngredientes.size() == numeroIngredientes && !checkbox.isChecked()){
-                        checkbox.setEnabled(false);
-                    }
-                    else{
-                        listaIngredientes.add((String) checkbox.getText());
-                    }
+                    if (listaIngredientes.size() == numeroIngredientes) {
 
+
+                    }
                 }
             }
         }
+
     }
 
     public TipoIngrediente convertirIngrediente(String ingrediente){
