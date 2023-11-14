@@ -188,7 +188,6 @@
                 android:layout_span="4"
                 android:layout_weight="0"
                 android:backgroundTint="#000000"
-                android:onClick="realizarPedido"
                 android:text="Hora de Realizar el pedido" />
         </TableRow>
 

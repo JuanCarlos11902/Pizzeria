@@ -20,13 +20,13 @@ public class DAO {
     public ArrayList<Usuario> getListaUsuarios(){
         listaUsuarios = new ArrayList<>();
 
-        listaUsuarios.add(new Usuario(null,"Christian","Prado", "christian","christian"));
-        listaUsuarios.add(new Usuario(null,"Cayetano","Linares", "cayetano","cayetano"));
-        listaUsuarios.add(new Usuario(null,"Juan Carlos","Pérez", "juancarlos","juancarlos"));
-        listaUsuarios.add(new Usuario(null,"Iván","Pérez", "ivan","ivan"));
-        listaUsuarios.add(new Usuario(null,"Lucía","Pizarro", "lucia","lucia"));
-        listaUsuarios.add(new Usuario(null,"Luis","Vázquez", "luis","luis"));
-        listaUsuarios.add(new Usuario(null,"Pablo","Hernández", "pablo","pablo"));
+        listaUsuarios.add(new Usuario(1,"Christian","Prado", "christian","christian"));
+        listaUsuarios.add(new Usuario(2,"Cayetano","Linares", "cayetano","cayetano"));
+        listaUsuarios.add(new Usuario(3,"Juan Carlos","Pérez", "juancarlos","juancarlos"));
+        listaUsuarios.add(new Usuario(4,"Iván","Pérez", "ivan","ivan"));
+        listaUsuarios.add(new Usuario(5,"Lucía","Pizarro", "lucia","lucia"));
+        listaUsuarios.add(new Usuario(6,"Luis","Vázquez", "luis","luis"));
+        listaUsuarios.add(new Usuario(7,"Pablo","Hernández", "pablo","pablo"));
 
         return listaUsuarios;
 

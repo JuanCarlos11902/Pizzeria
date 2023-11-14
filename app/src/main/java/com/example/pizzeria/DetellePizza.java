@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import java.util.Arrays;
 public class DetellePizza extends AppCompatActivity {
 
     Pizza pizza;
+    Servicio servicio  = new Servicio();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class DetellePizza extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 Toast.makeText(getApplicationContext(), "Su pedido llegará en aproximadamente 25 minutos.", Toast.LENGTH_SHORT).show();
+                                finish();
                             }
                         }
                 ).setNegativeButton(
@@ -70,6 +73,18 @@ public class DetellePizza extends AppCompatActivity {
         AlertDialog dialog = builder.create();
 
         dialog.show();
+    }
+
+    public void agregarPizza(View view){
+        SharedPreferences preferences = getSharedPreferences("MisPreferencias", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        int idUsuario = preferences.getInt("idUsuario",0);
+
+        for (int i = 0; i < servicio.getListaUsuarios().size(); i++) {
+            if (idUsuario == servicio.getListaUsuarios().get(i).getId()){
+                servicio.getListaUsuarios().get(i).getListaPizzasFavoritas().add(pizza);
+            }
+        }
     }
 
 }

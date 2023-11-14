@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -41,26 +42,7 @@ public class IngredientesFragment extends Fragment {
         listaIngredientes = new ArrayList<>();
         ArrayList<CheckBox> listaCheckBox = new ArrayList<>();
         tableLayout = view.findViewById(R.id.table);
-        CheckBox checkbox = view.findViewById(R.id.checkBox30);
-        CheckBox checkbox2 = view.findViewById(R.id.checkBox31);
-        CheckBox checkbox3 = view.findViewById(R.id.checkBox32);
-        CheckBox checkbox4 = view.findViewById(R.id.checkBox33);
-        CheckBox checkbox5 = view.findViewById(R.id.checkBox34);
-        CheckBox checkbox6 = view.findViewById(R.id.checkBox35);
-        CheckBox checkbox7 = view.findViewById(R.id.checkBox36);
-        CheckBox checkbox8 = view.findViewById(R.id.checkBox37);
-        CheckBox checkbox9 = view.findViewById(R.id.checkBox18);
-        CheckBox checkbox10 = view.findViewById(R.id.checkBox19);
-        CheckBox checkbox11 = view.findViewById(R.id.checkBox20);
-        CheckBox checkbox12 = view.findViewById(R.id.checkBox21);
-        CheckBox checkbox13 = view.findViewById(R.id.checkBox22);
-        CheckBox checkbox14 = view.findViewById(R.id.checkBox23);
-        CheckBox checkbox15 = view.findViewById(R.id.checkBox24);
-        CheckBox checkbox16 = view.findViewById(R.id.checkBox25);
-        CheckBox checkbox17 = view.findViewById(R.id.checkBox26);
-        CheckBox checkbox18 = view.findViewById(R.id.checkBox27);
-        CheckBox checkbox19 = view.findViewById(R.id.checkBox28);
-        CheckBox checkbox20 = view.findViewById(R.id.checkBox29);
+
 
         for (int i = 0; i < tableLayout.getChildCount(); i++) {
             TableRow row = (TableRow) tableLayout.getChildAt(i);
@@ -81,6 +63,15 @@ public class IngredientesFragment extends Fragment {
             });
         }
 
+        Button button8 = view.findViewById(R.id.button8);
+
+        button8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                realizarPedido();
+            }
+        });
+
         return view;
     }
 
@@ -98,9 +89,16 @@ public class IngredientesFragment extends Fragment {
                 if (cell instanceof CheckBox) {
                     CheckBox checkbox = (CheckBox) cell;
                     if (listaIngredientes.size() == numeroIngredientes) {
-
-
+                        comprobarBotones();
                     }
+
+                    else{
+                        checkbox.setEnabled(true);
+                        if (checkbox.isChecked()){
+                            listaIngredientes.add(checkbox.getText().toString());
+                        }
+                    }
+
                 }
             }
         }
@@ -110,33 +108,93 @@ public class IngredientesFragment extends Fragment {
     public TipoIngrediente convertirIngrediente(String ingrediente){
         TipoIngrediente ingredienteFinal = null;
         switch (ingrediente){
-            case "Ternera": ingredienteFinal = TipoIngrediente.TERNERA;
-            case "Jamón York": ingredienteFinal = TipoIngrediente.JAMON_YORK;
-            case "Atún": ingredienteFinal = TipoIngrediente.ATUN;
-            case "Pollo": ingredienteFinal = TipoIngrediente.POLLO;
-            case "Barbacoa": ingredienteFinal = TipoIngrediente.SALSA_BARBACOA;
-            case "Huevo": ingredienteFinal = TipoIngrediente.HUEVO_BATIDO;
-            case "Aceitunas": ingredienteFinal = TipoIngrediente.ACEITUNAS;
-            case "Queso": ingredienteFinal = TipoIngrediente.QUESO_RULO_DE_CABRA;
-            case "Cheddar": ingredienteFinal = TipoIngrediente.SALSA_CHEDDAR;
-            case "Jamón": ingredienteFinal = TipoIngrediente.JAMON;
-            case "Trufa": ingredienteFinal = TipoIngrediente.TRUFA;
-            case "Chorizo": ingredienteFinal = TipoIngrediente.CHORIZO;
-            case "Gaucha": ingredienteFinal = TipoIngrediente.SALSA_GAUCHA;
-            case "Gambas": ingredienteFinal = TipoIngrediente.GAMBAS;
-            case "Calabaza": ingredienteFinal = TipoIngrediente.CALABAZA;
-            case "Peperonni": ingredienteFinal = TipoIngrediente.PEPERONNI;
-            case "Nata": ingredienteFinal = TipoIngrediente.NATA;
-            case "Beicon": ingredienteFinal = TipoIngrediente.BEICON;
-            case "Patatas": ingredienteFinal = TipoIngrediente.PATATAS_FRITAS;
-            case "Maiz": ingredienteFinal = TipoIngrediente.MAIZ;
+            case "Ternera":{
+                ingredienteFinal = TipoIngrediente.TERNERA;
+                break;
+            }
+            case "Jamón York": {
+                ingredienteFinal = TipoIngrediente.JAMON_YORK;
+                break;
+            }
+            case "Atún": {
+                ingredienteFinal = TipoIngrediente.ATUN;
+                break;
+            }
+            case "Pollo": {
+                ingredienteFinal = TipoIngrediente.POLLO;
+                break;
+            }
+            case "Barbacoa": {
+                ingredienteFinal = TipoIngrediente.SALSA_BARBACOA;
+                break;
+            }
+            case "Huevo": {
+                ingredienteFinal = TipoIngrediente.HUEVO_BATIDO;
+                break;
+            }
+            case "Aceitunas": {
+                ingredienteFinal = TipoIngrediente.ACEITUNAS;
+                break;
+            }
+            case "Queso": {
+                ingredienteFinal = TipoIngrediente.QUESO_RULO_DE_CABRA;
+                break;
+            }
+            case "Cheddar": {
+                ingredienteFinal = TipoIngrediente.SALSA_CHEDDAR;
+                break;
+            }
+            case "Jamón": {
+                ingredienteFinal = TipoIngrediente.JAMON;
+                break;
+            }
+            case "Trufa": {
+                ingredienteFinal = TipoIngrediente.TRUFA;
+                break;
+            }
+            case "Chorizo": {
+                ingredienteFinal = TipoIngrediente.CHORIZO;
+                break;
+            }
+            case "Gaucha": {
+                ingredienteFinal = TipoIngrediente.SALSA_GAUCHA;
+                break;
+            }
+            case "Gambas": {
+                ingredienteFinal = TipoIngrediente.GAMBAS;
+                break;
+            }
+            case "Calabaza": {
+                ingredienteFinal = TipoIngrediente.CALABAZA;
+                break;
+            }
+            case "Peperonni": {
+                ingredienteFinal = TipoIngrediente.PEPERONNI;
+                break;
+            }
+            case "Nata": {
+                ingredienteFinal = TipoIngrediente.NATA;
+                break;
+            }
+            case "Beicon": {
+                ingredienteFinal = TipoIngrediente.BEICON;
+                break;
+            }
+            case "Patatas": {
+                ingredienteFinal = TipoIngrediente.PATATAS_FRITAS;
+                break;
+            }
+            case "Maiz": {
+                ingredienteFinal = TipoIngrediente.MAIZ;
+                break;
+            }
         }
 
         return ingredienteFinal;
 
     }
 
-    public void realizarPedido(View view){
+    public void realizarPedido(){
         ArrayList<TipoIngrediente> listaIngredientesEnum = new ArrayList<>();
         TipoTamano tamañoEnum = null;
         double precio = 10;
@@ -161,14 +219,32 @@ public class IngredientesFragment extends Fragment {
             listaIngredientesEnum.add(convertirIngrediente(listaIngredientes.get(i)));
         }
 
-        Pizza pizza = new Pizza("Tu Pizza", numeroIngredientes, (TipoIngrediente[]) listaIngredientesEnum.toArray(), tamañoEnum, precio);
+        TipoIngrediente[] miArray = new TipoIngrediente[listaIngredientesEnum.size()];
+        miArray = listaIngredientesEnum.toArray(miArray);
+
+        Pizza pizza = new Pizza("Tu Pizza", numeroIngredientes, miArray, tamañoEnum, precio);
 
         Intent intent = new Intent(this.getActivity(), DetellePizza.class);
         intent.putExtra("pizza",pizza);
+        startActivity(intent);
 
     }
 
-
+    public void comprobarBotones() {
+        int numRows = tableLayout.getChildCount();
+        for (int i = 0; i < numRows; i++) {
+            TableRow row = (TableRow) tableLayout.getChildAt(i);
+            for (int j = 0; j < row.getChildCount(); j++) {
+                View cell = row.getChildAt(j);
+                if (cell instanceof CheckBox){
+                    CheckBox checkBox = (CheckBox) cell;
+                    if (checkBox.isChecked() == false){
+                        checkBox.setEnabled(false);
+                    }
+                }
+            }
+        }
+    }
 
 }
 

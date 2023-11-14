@@ -63,6 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:backgroundTint="#000000"
+                    android:onClick="mostrarPizzasFavoritas"
                     android:text="Pizzas Favoritas"
                     android:textSize="14sp" />
             </LinearLayout>

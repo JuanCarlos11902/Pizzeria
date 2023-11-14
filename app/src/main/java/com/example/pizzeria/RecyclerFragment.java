@@ -11,10 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 public class RecyclerFragment extends Fragment implements PizzaAdapter.OnPizzaItemClickListener{
 
-    public RecyclerFragment() {
-
+    ArrayList<Pizza> listaPizzasReciclar;
+    public RecyclerFragment(ArrayList<Pizza> lista) {
+        this.listaPizzasReciclar = lista;
     }
 
     @Override
@@ -31,12 +34,10 @@ public class RecyclerFragment extends Fragment implements PizzaAdapter.OnPizzaIt
 
         RecyclerView recyclerView;
         PizzaAdapter pizzaAdapter;
-        Servicio servicio;
 
         recyclerView = view.findViewById(R.id.recyclerView);
-        servicio = new Servicio();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        pizzaAdapter = new PizzaAdapter(servicio.getListaPizzasFabricadas(), this);
+        pizzaAdapter = new PizzaAdapter(listaPizzasReciclar, this);
 
         recyclerView.setAdapter(pizzaAdapter);
 

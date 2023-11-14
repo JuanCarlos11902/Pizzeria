@@ -1,39 +1,41 @@
 package com.example.pizzeria;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Usuario {
 
-    private static int IdUsuario = 0;
-    private Pizza ultimoPedido;
+    private int id = 0;
     private String nombre;
     private String apellido;
     private String usuario;
     private String constraseña;
 
-    public Usuario(Pizza ultimoPedido, String nombre, String apellido, String usuario, String constraseña) {
-        this.IdUsuario++;
-        this.ultimoPedido = ultimoPedido;
+    private ArrayList<Pizza> listaPizzasFavoritas;
+
+    public Usuario(int id, String nombre, String apellido, String usuario, String constraseña) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.usuario = usuario;
         this.constraseña = constraseña;
+        this.listaPizzasFavoritas = new ArrayList<>();
     }
 
-    public int getIdUsuario() {
-        return IdUsuario;
+    public int getId() {
+        return id;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        IdUsuario = idUsuario;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Pizza getUltimoPedido() {
-        return ultimoPedido;
+    public ArrayList<Pizza> getListaPizzasFavoritas() {
+        return listaPizzasFavoritas;
     }
 
-    public void setUltimoPedido(Pizza ultimoPedido) {
-        this.ultimoPedido = ultimoPedido;
+    public void setListaPizzasFavoritas(ArrayList<Pizza> listaPizzasFavoritas) {
+        this.listaPizzasFavoritas = listaPizzasFavoritas;
     }
 
     public String getNombre() {
@@ -71,8 +73,7 @@ public class Usuario {
     @Override
     public String toString() {
         return "Usuario{" +
-                "IdUsuario=" + IdUsuario +
-                ", ultimoPedido=" + ultimoPedido +
+                "IdUsuario=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", usuario='" + usuario + '\'' +
@@ -85,11 +86,11 @@ public class Usuario {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
-        return IdUsuario == usuario.IdUsuario;
+        return id == usuario.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(IdUsuario);
+        return Objects.hash(id);
     }
 }
