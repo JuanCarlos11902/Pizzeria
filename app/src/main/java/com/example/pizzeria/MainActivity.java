@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    Servicio servicio = new Servicio();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
 
         boolean flag = false;
 
-        for (int i = 0; i < servicio.getListaUsuarios().size(); i++) {
-            if (servicio.getListaUsuarios().get(i).getUsuario().equals(txtUsuario.getText().toString())
-            && servicio.getListaUsuarios().get(i).getConstraseña().equals(txtContraseña.getText().toString())){
+        for (int i = 0; i < Servicio.getInstance().getListaUsuarios().size(); i++) {
+            if (Servicio.getInstance().getListaUsuarios().get(i).getUsuario().equals(txtUsuario.getText().toString())
+            && Servicio.getInstance().getListaUsuarios().get(i).getConstraseña().equals(txtContraseña.getText().toString())){
 
                 SharedPreferences preferences = getSharedPreferences("MisPreferencias",MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putInt("idUsuario", servicio.getListaUsuarios().get(i).getId());
+                editor.putInt("idUsuario", Servicio.getInstance().getListaUsuarios().get(i).getId());
                 editor.apply();
                 flag = true;
             }

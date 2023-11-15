@@ -19,14 +19,11 @@ public class ActivityCarta extends AppCompatActivity{
 
     private RecyclerView recyclerView;
     private PizzaAdapter pizzaAdapter;
-    private Servicio servicio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carta);
-
-        servicio = new Servicio();
 
         Button button6 = findViewById(R.id.button6);
 
@@ -49,7 +46,7 @@ public class ActivityCarta extends AppCompatActivity{
                 getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentById(R.id.contenedor)).commit();
             }
 
-            RecyclerFragment fragment = new RecyclerFragment(servicio.getListaPizzasFabricadas());
+            RecyclerFragment fragment = new RecyclerFragment(Servicio.getInstance().getListaPizzasFabricadas());
 
             getSupportFragmentManager().beginTransaction().replace(R.id.contenedor, fragment).commit();
 
@@ -62,9 +59,9 @@ public class ActivityCarta extends AppCompatActivity{
         SharedPreferences.Editor editor = preferences.edit();
         int idUsuario = preferences.getInt("idUsuario", 0);
 
-        for (int i = 0; i < servicio.getListaUsuarios().size(); i++) {
-            if (idUsuario == servicio.getListaUsuarios().get(i).getId()) {
-                listaPizzasReciclar = servicio.getListaUsuarios().get(i).getListaPizzasFavoritas();
+        for (int i = 0; i < Servicio.getInstance().getListaUsuarios().size(); i++) {
+            if (idUsuario == Servicio.getInstance().getListaUsuarios().get(i).getId()) {
+                listaPizzasReciclar = Servicio.getInstance().getListaUsuarios().get(i).getListaPizzasFavoritas();
             }
         }
 

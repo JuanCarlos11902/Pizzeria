@@ -19,7 +19,7 @@ import java.util.Arrays;
 public class DetellePizza extends AppCompatActivity {
 
     Pizza pizza;
-    Servicio servicio  = new Servicio();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,9 +80,9 @@ public class DetellePizza extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         int idUsuario = preferences.getInt("idUsuario",0);
 
-        for (int i = 0; i < servicio.getListaUsuarios().size(); i++) {
-            if (idUsuario == servicio.getListaUsuarios().get(i).getId()){
-                servicio.getListaUsuarios().get(i).getListaPizzasFavoritas().add(pizza);
+        for (int i = 0; i < Servicio.getInstance().getListaUsuarios().size(); i++) {
+            if (idUsuario == Servicio.getInstance().getListaUsuarios().get(i).getId()){
+                Servicio.getInstance().getListaUsuarios().get(i).getListaPizzasFavoritas().add(pizza);
             }
         }
     }

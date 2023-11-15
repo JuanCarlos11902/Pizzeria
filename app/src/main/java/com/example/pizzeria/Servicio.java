@@ -5,10 +5,23 @@ import java.util.ArrayList;
 
 public class Servicio {
 
-    DAO dao = DAO.getInstance();
+    private static Servicio servicio = null;
+    private ArrayList<Usuario> listaUsuarios;
+    private ArrayList<Pizza> listaPizzasFabricadas;
+    private Servicio(){
+        listaUsuarios = DAO.getInstance().getListaUsuarios();
+        listaPizzasFabricadas = DAO.getInstance().getListaPizzas();
+    }
 
-    private ArrayList<Usuario> listaUsuarios = dao.getListaUsuarios();
-    private ArrayList<Pizza> listaPizzasFabricadas = dao.getListaPizzas();
+    public static Servicio getInstance(){
+        if (servicio == null){
+            servicio = new Servicio();
+        }
+
+        return servicio;
+
+    }
+
 
     public ArrayList<Usuario> getListaUsuarios() {
         return listaUsuarios;
