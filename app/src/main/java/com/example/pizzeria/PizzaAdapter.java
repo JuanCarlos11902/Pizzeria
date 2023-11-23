@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.PizzaViewHolder> {
 
@@ -33,7 +34,7 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.PizzaViewHol
         Pizza pizza = pizzaList.get(position);
         holder.txtNombre.setText(pizza.getNombre());
         holder.txtNumeroIngredientes.setText(pizza.getNumeroIngredientes() + "");
-        holder.txtIngredientes.setText(pizza.getIngredientes().toString());
+        holder.txtIngredientes.setText(Arrays.deepToString(pizza.getIngredientes()));
         holder.txtTamaño.setText(pizza.getTamano().toString());
         holder.txtPrecio.setText(pizza.getPrecio() + "");
 
@@ -85,6 +86,8 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.PizzaViewHol
 
             return cadena;
         }
+
+
 
     }
 }

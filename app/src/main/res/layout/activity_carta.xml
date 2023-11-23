@@ -7,6 +7,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="268dp"
+        android:layout_height="39dp"
+        android:backgroundTint="#F30E0E"
+        android:onClick="volverAtras"
+        android:text="Volver" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
 
@@ -66,6 +74,17 @@
                     android:onClick="mostrarPizzasFavoritas"
                     android:text="Pizzas Favoritas"
                     android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/button13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:backgroundTint="#000000"
+                    android:onClick="volverAtras"
+                    android:text="Volver"
+                    android:textColor="#FFFFFF"
+                    android:textColorHighlight="#FFFFFF" />
             </LinearLayout>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -85,8 +104,9 @@
 
             <FrameLayout
                 android:id="@+id/contenedor"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="414dp"
+                android:layout_height="684dp"
+                android:background="#E6E8E8"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -94,9 +114,10 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="665dp"
+                    android:layout_width="411dp"
+                    android:layout_height="666dp"
                     android:layout_marginTop="24dp" />
+
             </FrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

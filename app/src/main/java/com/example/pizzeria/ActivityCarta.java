@@ -73,6 +73,10 @@ public class ActivityCarta extends AppCompatActivity{
         getSupportFragmentManager().beginTransaction().replace(R.id.contenedor, new RecyclerFragment(listaPizzasReciclar)).commit();
     }
 
+    public void volverAtras(View view){
+        finish();
+    }
+
 
 
 }

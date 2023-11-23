@@ -87,4 +87,8 @@ public class DetellePizza extends AppCompatActivity {
         }
     }
 
+    public void volverAtras(View view){
+        finish();
+    }
+
 }

@@ -11,8 +11,8 @@
 
     <ImageButton
         android:id="@+id/btnCarta"
-        android:layout_width="322dp"
-        android:layout_height="457dp"
+        android:layout_width="316dp"
+        android:layout_height="359dp"
         android:backgroundTint="#EA5228"
         android:onClick="cambiarActividadCarta"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -46,4 +46,19 @@
         app:layout_constraintHorizontal_bias="0.563"
         app:layout_constraintStart_toEndOf="@+id/imageButton6"
         app:srcCompat="@drawable/ic_settings_wheel_foreground" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="316dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="#F5F4F4"
+        android:onClick="irAPaginaWeb"
+        android:text="Ir a Nuestra Página Web"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCarta" />
 </androidx.constraintlayout.widget.ConstraintLayout>
