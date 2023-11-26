@@ -1,6 +1,15 @@
 package com.example.pizzeria;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.lang.reflect.Array;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class DAO {
@@ -15,6 +24,50 @@ public class DAO {
         }
 
         return dao;
+    }
+
+    private void getDatosTablas(SQLiteHelper helper){
+        SQLiteDatabase db = helper.getWritableDatabase();
+        this.listaUsuarios = new ArrayList<>();
+        this.listaPizzas = new ArrayList<>();
+
+        if (db != null){
+            Cursor cursor = db.rawQuery("Select * from Usuario", null);
+            cursor.moveToFirst();
+            Gson gson = new Gson();
+            Type typeList1 = new TypeToken<ArrayList<Pizza>>() {}.getType();
+
+            while(cursor.moveToNext()){
+                int id = cursor.getInt(0);
+                String nombre = cursor.getString(1);
+                String apellido = cursor.getString(2);
+                String usuario = cursor.getString(3);
+                String contraseña = cursor.getString(4);
+                ArrayList<Pizza> listaPizzasFavoritas = gson.fromJson(cursor.getString(5), typeList1);
+
+                Usuario usuario1 = new Usuario(id,nombre,apellido,usuario,contraseña);
+                usuario1.setListaPizzasFavoritas(listaPizzasFavoritas);
+
+                this.listaUsuarios.add(usuario1);
+            }
+
+            cursor = db.rawQuery("Select * from Pizza",null);
+            cursor.moveToFirst();
+            typeList1 = new TypeToken<TipoIngrediente[]>(){}.getType();
+
+            while(cursor.moveToNext()){
+                int id = cursor.getInt(0);
+                String nombre = cursor.getString(1);
+                int numeroIngredientes = cursor.getInt(2);
+                TipoIngrediente[] ingredientes = gson.fromJson(cursor.getString(3),typeList1);
+                TipoTamano tamano = TipoTamano.valueOf(cursor.getString(4));
+                double precio = cursor.getDouble(5);
+
+                Pizza pizza = new Pizza(id,nombre,numeroIngredientes,ingredientes,tamano,precio);
+                this.listaPizzas.add(pizza);
+            }
+
+        }
     }
 
     public ArrayList<Usuario> getListaUsuarios(){
@@ -33,19 +86,6 @@ public class DAO {
     }
 
     public ArrayList<Pizza> getListaPizzas(){
-        listaPizzas = new ArrayList<>();
-
-        listaPizzas.add(new Pizza("Margherita",4,new TipoIngrediente[]{TipoIngrediente.MOZZARELLA,TipoIngrediente.TOMATE_FRITO,TipoIngrediente.ALBAHACA,TipoIngrediente.ACEITE_OLIVA},TipoTamano.FAMILIAR,13.50));
-        listaPizzas.add(new Pizza("Marinara",4,new TipoIngrediente[]{TipoIngrediente.TOMATE_FRITO,TipoIngrediente.AJO,TipoIngrediente.ACEITE_OLIVA,TipoIngrediente.OREGANO},TipoTamano.MEDIANA,11.90));
-        listaPizzas.add(new Pizza("Diavola",4,new TipoIngrediente[]{TipoIngrediente.SALSA_PICANTE,TipoIngrediente.TOMATE_FRITO,TipoIngrediente.MOZZARELLA,TipoIngrediente.ACEITUNAS},TipoTamano.FAMILIAR,14.90));
-        listaPizzas.add(new Pizza("Prosciutto E Funghi",4,new TipoIngrediente[]{TipoIngrediente.JAMON,TipoIngrediente.CHAMPIÑON,TipoIngrediente.MOZZARELLA,TipoIngrediente.TOMATE_FRITO},TipoTamano.FAMILIAR,14.50));
-        listaPizzas.add(new Pizza("Del Bosco",4,new TipoIngrediente[]{TipoIngrediente.MOZZARELLA,TipoIngrediente.CALABAZA,TipoIngrediente.TRUFA,TipoIngrediente.NATA},TipoTamano.FAMILIAR,18.90));
-        listaPizzas.add(new Pizza("Capricciosa",7,new TipoIngrediente[]{TipoIngrediente.MOZZARELLA,TipoIngrediente.TOMATE_FRITO,TipoIngrediente.ALCACHOFAS,TipoIngrediente.ACEITUNAS,TipoIngrediente.JAMON,TipoIngrediente.CHAMPIÑON,TipoIngrediente.ANCHOAS},TipoTamano.FAMILIAR,13.90));
-        listaPizzas.add(new Pizza("Calzone",4,new TipoIngrediente[]{TipoIngrediente.TOMATE_FRITO,TipoIngrediente.MOZZARELLA,TipoIngrediente.SALSA_PICANTE,TipoIngrediente.JAMON},TipoTamano.MEDIANA,15.90));
-        listaPizzas.add(new Pizza("QUATTRO FORMAGGI",4,new TipoIngrediente[]{TipoIngrediente.MOZZARELLA,TipoIngrediente.PROVOLA,TipoIngrediente.PARMESANO,TipoIngrediente.GORGONZOLA},TipoTamano.MEDIANA,13.90));
-        listaPizzas.add(new Pizza("Bufalina",4,new TipoIngrediente[]{TipoIngrediente.MOZZARELLA,TipoIngrediente.TOMATE_FRITO,TipoIngrediente.ALBAHACA,TipoIngrediente.JAMON_YORK},TipoTamano.FAMILIAR,14.50));
-        listaPizzas.add(new Pizza("Melanzine",4,new TipoIngrediente[]{TipoIngrediente.MOZZARELLA,TipoIngrediente.TOMATE_FRITO,TipoIngrediente.BEICON,TipoIngrediente.PARMESANO},TipoTamano.FAMILIAR,13.90));
-        listaPizzas.add(new Pizza("Culatello",4,new TipoIngrediente[]{TipoIngrediente.MOZZARELLA,TipoIngrediente.TOMATE_FRITO,TipoIngrediente.QUESO_RULO_DE_CABRA,TipoIngrediente.JAMON_YORK},TipoTamano.FAMILIAR,15.90));
 
         return listaPizzas;
     }

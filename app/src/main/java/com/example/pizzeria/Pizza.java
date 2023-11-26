@@ -14,8 +14,8 @@ public class Pizza implements Serializable {
     private double precio;
 
 
-    public Pizza(String nombre, int numeroIngredientes, TipoIngrediente[] ingredientes, TipoTamano tamano, double precio) {
-        this.idPizza++;
+    public Pizza(int id,String nombre, int numeroIngredientes, TipoIngrediente[] ingredientes, TipoTamano tamano, double precio) {
+        this.idPizza = id;
         this.nombre = nombre;
         this.numeroIngredientes = numeroIngredientes;
         this.ingredientes = ingredientes;
