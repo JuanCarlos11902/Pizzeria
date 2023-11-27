@@ -1,6 +1,8 @@
 package com.example.pizzeria;
 
 
+import android.content.Context;
+
 import java.util.ArrayList;
 
 public class Servicio {
@@ -13,8 +15,9 @@ public class Servicio {
         listaPizzasFabricadas = DAO.getInstance().getListaPizzas(helper);
     }
 
-    public static Servicio getInstance(SQLiteHelper helper){
+    public static Servicio getInstance(Context context){
         if (servicio == null){
+            SQLiteHelper helper = SQLiteHelper.getInstance(context);
             servicio = new Servicio(helper);
         }
 

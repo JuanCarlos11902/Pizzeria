@@ -13,13 +13,13 @@ public class Usuario {
 
     private ArrayList<Pizza> listaPizzasFavoritas;
 
-    public Usuario(int id, String nombre, String apellido, String usuario, String constraseña) {
+    public Usuario(int id, String nombre, String apellido, String usuario, String constraseña, ArrayList<Pizza> listaPizzasFavoritas) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.usuario = usuario;
         this.constraseña = constraseña;
-        this.listaPizzasFavoritas = new ArrayList<>();
+        this.listaPizzasFavoritas = listaPizzasFavoritas;
     }
 
     public int getId() {

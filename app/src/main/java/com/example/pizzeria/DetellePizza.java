@@ -20,7 +20,7 @@ public class DetellePizza extends AppCompatActivity {
 
     Pizza pizza;
 
-    private SQLiteHelper helper = new SQLiteHelper(this.getApplicationContext(),"Pizzeria",null,1);
+    private SQLiteHelper helper = SQLiteHelper.getInstance(this);
 
 
     @Override
@@ -82,9 +82,11 @@ public class DetellePizza extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         int idUsuario = preferences.getInt("idUsuario",0);
 
-        for (int i = 0; i < Servicio.getInstance(helper).getListaUsuarios().size(); i++) {
-            if (idUsuario == Servicio.getInstance(helper).getListaUsuarios().get(i).getId()){
-                Servicio.getInstance(helper).getListaUsuarios().get(i).getListaPizzasFavoritas().add(pizza);
+        for (int i = 0; i < Servicio.getInstance(this).getListaUsuarios().size(); i++) {
+            if (idUsuario == Servicio.getInstance(this).getListaUsuarios().get(i).getId()){
+                Servicio.getInstance(this).getListaUsuarios().get(i).getListaPizzasFavoritas().add(pizza);
+                Usuario usuario = Servicio.getInstance(this).getListaUsuarios().get(i);
+                DAO.getInstance().updateUsuario(usuario,this);
             }
         }
     }

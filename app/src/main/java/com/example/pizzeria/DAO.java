@@ -1,5 +1,6 @@
 package com.example.pizzeria;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,6 +18,7 @@ public class DAO {
     private static DAO dao = null;
     private ArrayList<Usuario> listaUsuarios;
     private ArrayList<Pizza> listaPizzas;
+
 
     public static DAO getInstance(){
         if (dao == null){
@@ -44,8 +46,7 @@ public class DAO {
                 String contraseña = cursor.getString(4);
                 ArrayList<Pizza> listaPizzasFavoritas = gson.fromJson(cursor.getString(5), typeList1);
 
-                Usuario usuario1 = new Usuario(id,nombre,apellido,usuario,contraseña);
-                usuario1.setListaPizzasFavoritas(listaPizzasFavoritas);
+                Usuario usuario1 = new Usuario(id,nombre,apellido,usuario,contraseña,listaPizzasFavoritas);
 
                 this.listaUsuarios.add(usuario1);
             }
@@ -83,6 +84,18 @@ public class DAO {
         getDatosTablasPizza(helper);
         return listaPizzas;
 
+    }
+
+    public void updateUsuario(Usuario usuario, Context context){
+        SQLiteHelper helper = SQLiteHelper.getInstance(context);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        Gson gson = new Gson();
+        Type tipoLista = new TypeToken<ArrayList<Pizza>>(){}.getType();
+        ContentValues value = new ContentValues();
+        value.put("pizzasFavoritas", gson.toJson(usuario.getListaPizzasFavoritas(),tipoLista));
+        String[] args = {String.valueOf(usuario.getId())};
+
+        db.update("Usuario", value, "idUsuario=?", args );
     }
 
 

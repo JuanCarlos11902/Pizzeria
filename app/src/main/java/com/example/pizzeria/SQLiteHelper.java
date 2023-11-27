@@ -15,8 +15,18 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class SQLiteHelper extends SQLiteOpenHelper {
+
+    private static SQLiteHelper instance;
     public SQLiteHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
+    }
+
+    public static synchronized SQLiteHelper getInstance(Context context){
+        if (instance == null){
+            instance = new SQLiteHelper(context.getApplicationContext(),"Pizzeria",null,5);
+        }
+
+        return instance;
     }
 
     @Override
@@ -27,11 +37,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 "ingredientes Text," +
                 "tamano Text," +
                 "precio Real)");
-        db.execSQL("Create Table Usuario(idusuario Integer," +
-                "nombre Text," +
-                "apellido Text," +
-                "usuario Text," +
-                "contraseña Text)");
+        db.execSQL("Create Table Usuario(idUsuario Integer,nombre Text,apellido Text,usuario Text,contraseña Text,pizzasFavoritas Text)");
 
         ArrayList<Pizza> listaPizzas = new ArrayList<>();
         Type tipoJSON = new TypeToken<TipoIngrediente[]>() {}.getType();
@@ -58,18 +64,18 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
-        listaUsuarios.add(new Usuario(1,"Christian","Prado", "christian","christian"));
-        listaUsuarios.add(new Usuario(2,"Cayetano","Linares", "cayetano","cayetano"));
-        listaUsuarios.add(new Usuario(3,"Juan Carlos","Pérez", "juancarlos","juancarlos"));
-        listaUsuarios.add(new Usuario(4,"Iván","Pérez", "ivan","ivan"));
-        listaUsuarios.add(new Usuario(5,"Lucía","Pizarro", "lucia","lucia"));
-        listaUsuarios.add(new Usuario(6,"Luis","Vázquez", "luis","luis"));
-        listaUsuarios.add(new Usuario(7,"Pablo","Hernández", "pablo","pablo"));
+        listaUsuarios.add(new Usuario(1,"Christian","Prado", "christian","christian", new ArrayList<>()));
+        listaUsuarios.add(new Usuario(2,"Cayetano","Linares", "cayetano","cayetano", new ArrayList<>()));
+        listaUsuarios.add(new Usuario(3,"Juan Carlos","Pérez", "juancarlos","juancarlos", new ArrayList<>()));
+        listaUsuarios.add(new Usuario(4,"Iván","Pérez", "ivan","ivan", new ArrayList<>()));
+        listaUsuarios.add(new Usuario(5,"Lucía","Pizarro", "lucia","lucia", new ArrayList<>()));
+        listaUsuarios.add(new Usuario(6,"Luis","Vázquez", "luis","luis", new ArrayList<>()));
+        listaUsuarios.add(new Usuario(7,"Pablo","Hernández", "pablo","pablo", new ArrayList<>()));
 
         ContentValues[] valuesUsuario = new ContentValues[7];
 
         for (int i = 0; i < listaUsuarios.size(); i++) {
-            valuesUsuario[i] = crearUsuario(listaUsuarios.get(i).getId(),listaUsuarios.get(i).getNombre(),listaUsuarios.get(i).getApellido(),listaUsuarios.get(i).getUsuario(),listaUsuarios.get(i).getConstraseña());
+            valuesUsuario[i] = crearUsuario(listaUsuarios.get(i).getId(),listaUsuarios.get(i).getNombre(),listaUsuarios.get(i).getApellido(),listaUsuarios.get(i).getUsuario(),listaUsuarios.get(i).getConstraseña(),listaUsuarios.get(i).getListaPizzasFavoritas());
             db.insert("Usuario",null,valuesUsuario[i]);
         }
 
@@ -102,13 +108,15 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return values;
     }
 
-    public ContentValues crearUsuario(int id, String nombre,String apellido,String usuario,String contraseña){
+    public ContentValues crearUsuario(int id, String nombre,String apellido,String usuario,String contraseña,ArrayList<Pizza> listaPizzasFavoritas){
+        Gson gson = new Gson();
         ContentValues values = new ContentValues();
-        values.put("idusuario",id);
+        values.put("idUsuario",id);
         values.put("nombre",nombre);
         values.put("apellido",apellido);
         values.put("usuario",usuario);
         values.put("contraseña",contraseña);
+        values.put("pizzasFavoritas",gson.toJson(listaPizzasFavoritas));
 
         return values;
 
