@@ -222,7 +222,7 @@ public class IngredientesFragment extends Fragment {
         TipoIngrediente[] miArray = new TipoIngrediente[listaIngredientesEnum.size()];
         miArray = listaIngredientesEnum.toArray(miArray);
 
-        Pizza pizza = new Pizza("Tu Pizza", numeroIngredientes, miArray, tamañoEnum, precio);
+        Pizza pizza = new Pizza(0,"Tu Pizza", numeroIngredientes, miArray, tamañoEnum, precio);
 
         Intent intent = new Intent(this.getActivity(), DetellePizza.class);
         intent.putExtra("pizza",pizza);

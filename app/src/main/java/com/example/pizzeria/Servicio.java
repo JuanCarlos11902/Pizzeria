@@ -8,14 +8,14 @@ public class Servicio {
     private static Servicio servicio = null;
     private ArrayList<Usuario> listaUsuarios;
     private ArrayList<Pizza> listaPizzasFabricadas;
-    private Servicio(){
-        listaUsuarios = DAO.getInstance().getListaUsuarios();
-        listaPizzasFabricadas = DAO.getInstance().getListaPizzas();
+    private Servicio(SQLiteHelper helper){
+        listaUsuarios = DAO.getInstance().getListaUsuarios(helper);
+        listaPizzasFabricadas = DAO.getInstance().getListaPizzas(helper);
     }
 
-    public static Servicio getInstance(){
+    public static Servicio getInstance(SQLiteHelper helper){
         if (servicio == null){
-            servicio = new Servicio();
+            servicio = new Servicio(helper);
         }
 
         return servicio;

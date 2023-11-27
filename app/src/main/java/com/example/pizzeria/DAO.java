@@ -26,10 +26,9 @@ public class DAO {
         return dao;
     }
 
-    private void getDatosTablas(SQLiteHelper helper){
+    private void getDatosTablasUsuario(SQLiteHelper helper){
         SQLiteDatabase db = helper.getWritableDatabase();
         this.listaUsuarios = new ArrayList<>();
-        this.listaPizzas = new ArrayList<>();
 
         if (db != null){
             Cursor cursor = db.rawQuery("Select * from Usuario", null);
@@ -50,44 +49,40 @@ public class DAO {
 
                 this.listaUsuarios.add(usuario1);
             }
-
-            cursor = db.rawQuery("Select * from Pizza",null);
-            cursor.moveToFirst();
-            typeList1 = new TypeToken<TipoIngrediente[]>(){}.getType();
-
-            while(cursor.moveToNext()){
-                int id = cursor.getInt(0);
-                String nombre = cursor.getString(1);
-                int numeroIngredientes = cursor.getInt(2);
-                TipoIngrediente[] ingredientes = gson.fromJson(cursor.getString(3),typeList1);
-                TipoTamano tamano = TipoTamano.valueOf(cursor.getString(4));
-                double precio = cursor.getDouble(5);
-
-                Pizza pizza = new Pizza(id,nombre,numeroIngredientes,ingredientes,tamano,precio);
-                this.listaPizzas.add(pizza);
-            }
-
         }
     }
 
-    public ArrayList<Usuario> getListaUsuarios(){
-        listaUsuarios = new ArrayList<>();
+    private void getDatosTablasPizza(SQLiteHelper helper){
+        SQLiteDatabase db = helper.getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from Pizza",null);
+        cursor.moveToFirst();
+        Type typeList1 = new TypeToken<TipoIngrediente[]>(){}.getType();
+        Gson gson = new Gson();
+        this.listaPizzas = new ArrayList<>();
 
-        listaUsuarios.add(new Usuario(1,"Christian","Prado", "christian","christian"));
-        listaUsuarios.add(new Usuario(2,"Cayetano","Linares", "cayetano","cayetano"));
-        listaUsuarios.add(new Usuario(3,"Juan Carlos","Pérez", "juancarlos","juancarlos"));
-        listaUsuarios.add(new Usuario(4,"Iván","Pérez", "ivan","ivan"));
-        listaUsuarios.add(new Usuario(5,"Lucía","Pizarro", "lucia","lucia"));
-        listaUsuarios.add(new Usuario(6,"Luis","Vázquez", "luis","luis"));
-        listaUsuarios.add(new Usuario(7,"Pablo","Hernández", "pablo","pablo"));
+        while(cursor.moveToNext()){
+            int id = cursor.getInt(0);
+            String nombre = cursor.getString(1);
+            int numeroIngredientes = cursor.getInt(2);
+            TipoIngrediente[] ingredientes = gson.fromJson(cursor.getString(3),typeList1);
+            TipoTamano tamano = TipoTamano.valueOf(cursor.getString(4));
+            double precio = cursor.getDouble(5);
 
+            Pizza pizza = new Pizza(id,nombre,numeroIngredientes,ingredientes,tamano,precio);
+            this.listaPizzas.add(pizza);
+        }
+    }
+
+    public ArrayList<Usuario> getListaUsuarios(SQLiteHelper helper){
+        getDatosTablasUsuario(helper);
         return listaUsuarios;
 
     }
 
-    public ArrayList<Pizza> getListaPizzas(){
-
+    public ArrayList<Pizza> getListaPizzas(SQLiteHelper helper){
+        getDatosTablasPizza(helper);
         return listaPizzas;
+
     }
 
 

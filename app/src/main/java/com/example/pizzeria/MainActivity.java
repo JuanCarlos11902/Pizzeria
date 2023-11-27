@@ -25,13 +25,15 @@ public class MainActivity extends AppCompatActivity {
 
         boolean flag = false;
 
-        for (int i = 0; i < Servicio.getInstance().getListaUsuarios().size(); i++) {
-            if (Servicio.getInstance().getListaUsuarios().get(i).getUsuario().equals(txtUsuario.getText().toString())
-            && Servicio.getInstance().getListaUsuarios().get(i).getConstraseña().equals(txtContraseña.getText().toString())){
+        SQLiteHelper helper = new SQLiteHelper(this.getApplicationContext(),"Pizzeria",null,1);
+
+        for (int i = 0; i < Servicio.getInstance(helper).getListaUsuarios().size(); i++) {
+            if (Servicio.getInstance(helper).getListaUsuarios().get(i).getUsuario().equals(txtUsuario.getText().toString())
+            && Servicio.getInstance(helper).getListaUsuarios().get(i).getConstraseña().equals(txtContraseña.getText().toString())){
 
                 SharedPreferences preferences = getSharedPreferences("MisPreferencias",MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putInt("idUsuario", Servicio.getInstance().getListaUsuarios().get(i).getId());
+                editor.putInt("idUsuario", Servicio.getInstance(helper).getListaUsuarios().get(i).getId());
                 editor.apply();
                 flag = true;
             }
