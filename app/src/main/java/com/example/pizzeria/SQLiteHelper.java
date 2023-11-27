@@ -21,7 +21,17 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Create Table Pizza()");
+        db.execSQL("Create Table Pizza(idPizza Integer," +
+                "nombre Text," +
+                "numeroIngredientes Integer," +
+                "ingredientes Text," +
+                "tamano Text," +
+                "precio Real)");
+        db.execSQL("Create Table Usuario(idusuario Integer," +
+                "nombre Text," +
+                "apellido Text," +
+                "usuario Text," +
+                "contraseña Text)");
 
         ArrayList<Pizza> listaPizzas = new ArrayList<>();
         Type tipoJSON = new TypeToken<TipoIngrediente[]>() {}.getType();
@@ -82,11 +92,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public ContentValues crearPizza(int id,String nombre,int numeroIngredientes,String ingredientes,String tamano,double precio){
         ContentValues values = new ContentValues();
 
-        values.put("id",id);
+        values.put("idPizza",id);
         values.put("nombre",nombre);
         values.put("numeroIngredientes",numeroIngredientes);
         values.put("ingredientes",ingredientes);
-        values.put("tamaño",tamano);
+        values.put("tamano",tamano);
         values.put("precio",precio);
 
         return values;
@@ -94,7 +104,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public ContentValues crearUsuario(int id, String nombre,String apellido,String usuario,String contraseña){
         ContentValues values = new ContentValues();
-        values.put("id",id);
+        values.put("idusuario",id);
         values.put("nombre",nombre);
         values.put("apellido",apellido);
         values.put("usuario",usuario);

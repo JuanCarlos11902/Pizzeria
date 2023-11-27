@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         boolean flag = false;
 
-        SQLiteHelper helper = new SQLiteHelper(this.getApplicationContext(),"Pizzeria",null,1);
+        SQLiteHelper helper = new SQLiteHelper(this.getApplicationContext(),"Pizzeria",null,4);
 
         for (int i = 0; i < Servicio.getInstance(helper).getListaUsuarios().size(); i++) {
             if (Servicio.getInstance(helper).getListaUsuarios().get(i).getUsuario().equals(txtUsuario.getText().toString())
